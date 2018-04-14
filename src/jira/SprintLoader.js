@@ -6,6 +6,8 @@ let stories = [];
 const JIRA_HOST = 'jupiter.bjss.com'
 const SPRINT_ID = '10'
 
+const MAIN_ISSUE_TYPES = ["Story", "Bug", "Technical Debt"];
+
 function getJiraClient() {
 	return new JiraClient( {
 		host: JIRA_HOST
@@ -36,7 +38,7 @@ export function getSprint (callback) {
 		if (error) {
 			console.error(error);
 		} else {
-			stories = response.issues.filter((issue) => issue.fields.issuetype.name === "Story");
+			stories = response.issues.filter((issue) => MAIN_ISSUE_TYPES.indexOf(issue.fields.issuetype.name) >= 0 && !issue.fields.resolution);
 			// stories = response.issues;
 			// Now we need to fetch details for the assignee
 			stories.forEach((story) => story.fields.subtasks.forEach((task) => addTaskAssignees(task, callback)));
