@@ -7,8 +7,8 @@ export default class TableRow extends Component {
 		super(props);
 	}
 
-	getAllInState = (state) => {
-		const taskList = this.props.story.fields.subtasks.filter(task => task.fields.status.name.toUpperCase() === state);
+	getAllInState = (states) => {
+		const taskList = this.props.story.fields.subtasks.filter(task => states.indexOf(task.fields.status.name.toUpperCase()) >= 0);
 		return (
 			<td>
 				{taskList.map((task, i) => <TaskSummary task={task} key={i}/>)}
@@ -22,12 +22,11 @@ export default class TableRow extends Component {
 				<td>
 					<TaskSummary task={this.props.story} />
 				</td>
-				{this.getAllInState("TODO")}
-				{this.getAllInState("IN PROGRESS")}
-				{this.getAllInState("IN REVIEW")}
-				{this.getAllInState("DONE")}
-				{this.getAllInState("CLOSE")}
-				{this.getAllInState("CLOSED")}
+				{this.getAllInState(["TODO"])}
+				{this.getAllInState(["IN PROGRESS"])}
+				{this.getAllInState(["IN REVIEW"])}
+				{this.getAllInState(["DONE"])}
+				{this.getAllInState(["CLOSE", "CLOSED"])}
 			</tr>
 		);
 	}

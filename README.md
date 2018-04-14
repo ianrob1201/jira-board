@@ -3,6 +3,9 @@ NOTE: Have not yet worked around CORS. You will need to run chrome without CORS 
 open -a Google\ Chrome --args --disable-web-security --user-data-dir
 ```
 
+You'll also need to set the relevant constants at the top of SprintLoader.js (based on current sprint and JIRA URL)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

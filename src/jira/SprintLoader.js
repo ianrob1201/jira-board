@@ -3,9 +3,12 @@ import JiraClient from './jira-connector/index';
 
 let stories = [];
 
+const JIRA_HOST = ''
+const SPRINT_ID = '57953'
+
 function getJiraClient() {
 	return new JiraClient( {
-		host: 'jupiter.bjss.com'
+		host: JIRA_HOST
 	})
 }
 
@@ -26,14 +29,14 @@ function addTaskAssignees(task, callback) {
 }
 
 export function getSprint (callback) {
-	getJiraClient().board.getIssuesForBoard({
-		boardId: "17"
+	getJiraClient().sprint.getSprintIssues({
+		sprintId: SPRINT_ID
 	}, function(error, response) {
 		if (error) {
 			console.error(error);
 		} else {
-			// const stories = response.issues.filter((issue) => issue.fields.issuetype.name === "Story");
-			stories = response.issues;
+			stories = response.issues.filter((issue) => issue.fields.issuetype.name === "Story");
+			// stories = response.issues;
 			// Now we need to fetch details for the assignee
 			stories.forEach((story) => story.fields.subtasks.forEach((task) => addTaskAssignees(task, callback)));
 			callback(stories);
