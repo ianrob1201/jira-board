@@ -22,11 +22,10 @@ export default class TableRow extends Component {
 				<td>
 					<TaskSummary task={this.props.story} />
 				</td>
-				{this.getAllInState(["TODO"])}
+				{this.getAllInState(["READY", "READY FOR TRIAGE", "TO DO", "RAW", "RAISED", "REFINED"])}
 				{this.getAllInState(["IN PROGRESS"])}
 				{this.getAllInState(["IN REVIEW"])}
-				{this.getAllInState(["DONE"])}
-				{this.getAllInState(["CLOSE", "CLOSED"])}
+				{this.getAllInState(["DONE", "REJECTED", "READY FOR INT RELEASE", "COMPLETE"])}
 			</tr>
 		);
 	}
