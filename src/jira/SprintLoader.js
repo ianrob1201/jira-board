@@ -3,8 +3,8 @@ import JiraClient from './jira-connector/index';
 
 let stories = [];
 
-const JIRA_HOST = ''
-const SPRINT_ID = '57953'
+const JIRA_HOST = 'jupiter.bjss.com'
+const SPRINT_ID = '10'
 
 function getJiraClient() {
 	return new JiraClient( {
@@ -30,7 +30,8 @@ function addTaskAssignees(task, callback) {
 
 export function getSprint (callback) {
 	getJiraClient().sprint.getSprintIssues({
-		sprintId: SPRINT_ID
+		sprintId: SPRINT_ID,
+		maxResults: 500
 	}, function(error, response) {
 		if (error) {
 			console.error(error);
