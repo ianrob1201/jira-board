@@ -17,7 +17,16 @@ img.avatar {
 	border-collapse: collapse;
 }
 
-.board td,th{
-	padding-right: 20px;
+.board td,th {
+	/*padding-right: 20px;*/
 	border: 1px solid black;
+}
+
+.board td,th div {
+	/*position: absolute;*/
+	width: 100%;
+}
+
+.selected {
+	background-color: palegoldenrod;
 }
