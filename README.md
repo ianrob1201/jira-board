@@ -7,9 +7,8 @@ open -a Google\ Chrome --args --disable-web-security --user-data-dir
 
 Deploys to:
 
-```
-http://jira-lb-1255683888.eu-west-1.elb.amazonaws.com/board?url=jupiter.bjss.com&sprintId=919
-```
+http://jira-lb-1255683888.eu-west-1.elb.amazonaws.com
+
 You'll also need to set the relevant constants at the top of SprintLoader.js (based on current sprint and JIRA URL)
 
 
