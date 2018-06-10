@@ -63,7 +63,7 @@ build_docker_image() {
 }
 
 push_ecr_image(){
-	eval $(aws ecr get-login --region us-east-1 --no-include-email)
+	eval $(aws ecr get-login --region eu-west-1 --no-include-email)
 	docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1
 }
 
