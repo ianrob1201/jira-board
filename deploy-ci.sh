@@ -48,8 +48,8 @@ make_task_def(){
 			"name": "jira-board-container",
 			"image": "192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:%s",
 			"essential": true,
-			"memory": 200,
-			"cpu": 10,
+			"memory": 512,
+			"cpu": 512,
 			"portMappings": [
 				{
 					"containerPort": 3000,
