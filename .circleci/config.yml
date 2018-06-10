@@ -26,7 +26,7 @@ jobs:
      - run: docker build -t jira-board:$CIRCLE_SHA1 .
      - run: sudo apt install python-pip python2.7-dev
      - run: sudo pip install awscli
-     - run: bash ./deploy.sh
+     - run: bash ./deploy-ci.sh
      # - run: aws ecr get-login --no-include-email --region eu-west-1 | sh
      # - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
      # - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
