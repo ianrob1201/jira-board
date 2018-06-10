@@ -13,8 +13,12 @@ deploy_cluster() {
 
     family="jira-board-task"
 
+    echo 'Here'
     make_task_def
+    echo 'Here'
     register_definition
+    echo 'Here'
+    echo $revision
     if [[ $(aws ecs update-service --cluster jira --service jira-service --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
         echo "Error updating service."
@@ -41,14 +45,15 @@ deploy_cluster() {
 make_task_def(){
 	task_template='[
 		{
-			"name": "jira-board-task",
+			"name": "jira-board-container",
 			"image": "192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:%s",
 			"essential": true,
 			"memory": 200,
 			"cpu": 10,
 			"portMappings": [
 				{
-					"containerPort": 8080,
+					"containerPort": 3000,
+                    "protocol": "tcp",
 					"hostPort": 80
 				}
 			]
