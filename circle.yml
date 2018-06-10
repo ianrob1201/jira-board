@@ -1,0 +1,7 @@
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
+      - docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
