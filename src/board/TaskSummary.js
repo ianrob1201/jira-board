@@ -14,7 +14,7 @@ export default class TaskSummary extends Component {
 
 	componentDidMount() {
 	  const itemsRef = firebase.database().ref('items');
-	  itemsRef.child(this.state.id).set({selected: false});
+	  // itemsRef.child(this.state.id).set({selected: false});
 	  itemsRef.child(this.state.id).on('value', (snapshot) => {
 	  	this.setState({
 	  		selected: snapshot.val().selected

@@ -3,6 +3,8 @@ import './Table.css';
 import TableRow from './TableRow';
 import SprintLoader from '../jira/SprintLoader';
 import qs from 'query-string';
+import firebase from '../db/firebase';
+import { Link } from 'react-router-dom';
 
 export default class Table extends Component {
 	constructor(props) {
@@ -22,6 +24,9 @@ export default class Table extends Component {
 	    stories: issues,
 	    sprintId: qs.parse(props.location.search).sprintId
 	  }
+
+	  this.render = this.render.bind(this);
+	  this.clearConnections = this.clearConnections.bind(this);
 	}
 
     componentWillMount() {
@@ -30,20 +35,27 @@ export default class Table extends Component {
     	})
     }
 
+    clearConnections() {
+	  firebase.database().child('items').update({selected: false});
+    }
+
 	render() {
 		return (
-			<table className="board">
-				<tbody>
-					<tr>
-						<th>Story</th>
-						<th>Todo</th>
-						<th>In Progress</th>
-						<th>In Review</th>
-						<th>Done</th>
-					</tr>
-					{this.state.stories && this.state.stories.map((story, i) => <TableRow story={story} key={i}/>)}
-				</tbody>
-			</table>
+			<div>
+				<table className="board">
+					<tbody>
+						<tr>
+							<th>Story</th>
+							<th>Todo</th>
+							<th>In Progress</th>
+							<th>In Review</th>
+							<th>Done</th>
+						</tr>
+						{this.state.stories && this.state.stories.map((story, i) => <TableRow story={story} key={i}/>)}
+					</tbody>
+				</table>
+				<button onClick={this.clearConnections}>Clear All</button>
+			</div>
 		);
 	}
 }
