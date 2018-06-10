@@ -24,27 +24,8 @@ jobs:
 
      # build the application image
      - run: docker build -t jira-board .
-
-     # - run: docker login -u $DOCKER_USER -p $DOCKER_PASS 
-  deploy:
-    machine: true
-    steps:
-      - checkout
-      - run: docker build -t jira-board .
-      - run: sudo apt install python-pip python-dev
-      - run: sudo pip install awscli
-      - run: eval(aws ecr get-login --no-include-email)
-      - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
-      - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
-
-workflows:  
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+     - run: sudo apt install python-pip python
+     - run: sudo pip install awscli
+     - run: eval(aws ecr get-login --no-include-email)
+     - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
+     - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
