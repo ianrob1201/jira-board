@@ -1,11 +1,11 @@
-  machine:
-    pre:
-      - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.0-circleci'
-      - sudo chmod 0755 /usr/bin/docker
-    services:
-          - docker
-  deployment:
-    prod:
-      branch: master
-      commands:
-        - ./deploy.sh
+machine:
+  services:
+    - docker
+
+deployment:
+	hub:
+	  branch: master
+	  commands:
+	    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+	    - docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
+	    - docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
