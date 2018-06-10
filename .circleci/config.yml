@@ -26,6 +26,6 @@ jobs:
      - run: docker build -t jira-board .
      - run: sudo apt install python-pip python2.7-dev
      - run: sudo pip install awscli
-     - run: eval(aws ecr get-login --no-include-email)
+     - run: aws ecr get-login --no-include-email
      - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
      - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
