@@ -5,7 +5,7 @@ JQ="jq --raw-output --exit-status"
 
 configure_aws_cli(){
 	aws --version
-	aws configure set default.region us-east-1
+	aws configure set default.region eu-west-1
 	aws configure set default.output json
 }
 
@@ -64,7 +64,7 @@ build_docker_image() {
 
 push_ecr_image(){
 	eval $(aws ecr get-login --region eu-west-1 --no-include-email)
-    docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
+    docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1
 	docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1
 }
 
