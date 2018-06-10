@@ -27,13 +27,11 @@ jobs:
 
      # - run: docker login -u $DOCKER_USER -p $DOCKER_PASS 
   deploy:
-    docker:
-      - image: 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID_STAGING
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_STAGING
+    # docker:
+    #   - image: circleci/node:7.10
     steps:
-      - run: docker push
+      - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
+      - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
 
 workflows:  
   version: 2
