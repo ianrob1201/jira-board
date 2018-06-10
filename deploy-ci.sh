@@ -59,11 +59,12 @@ make_task_def(){
 }
 
 build_docker_image() {
-    docker build -t 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1 .
+    docker build -t jira-board .
 }
 
 push_ecr_image(){
 	eval $(aws ecr get-login --region eu-west-1 --no-include-email)
+    docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
 	docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1
 }
 
