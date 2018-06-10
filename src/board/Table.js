@@ -39,7 +39,7 @@ export default class Table extends Component {
 						<th>Todo</th>
 						<th>In Progress</th>
 						<th>In Review</th>
-						<th>Done {this.state.sprintId}</th>
+						<th>Done</th>
 					</tr>
 					{this.state.stories && this.state.stories.map((story, i) => <TableRow story={story} key={i}/>)}
 				</tbody>
