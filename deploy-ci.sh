@@ -58,6 +58,10 @@ make_task_def(){
 	task_def=$(printf "$task_template" $CIRCLE_SHA1)
 }
 
+build_docker_image() {
+    docker build -t 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1 .
+}
+
 push_ecr_image(){
 	eval $(aws ecr get-login --region us-east-1 --no-include-email)
 	docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:$CIRCLE_SHA1
@@ -75,5 +79,6 @@ register_definition() {
 }
 
 configure_aws_cli
+build_docker_image
 push_ecr_image
 deploy_cluster

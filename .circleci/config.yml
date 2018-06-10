@@ -23,7 +23,6 @@ jobs:
      - setup_remote_docker
 
      # build the application image
-     - run: docker build -t jira-board:$CIRCLE_SHA1 .
      - run: sudo apt install python-pip python2.7-dev
      - run: sudo pip install awscli
      - run: bash ./deploy-ci.sh
