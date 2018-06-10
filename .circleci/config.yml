@@ -9,7 +9,7 @@ jobs:
 
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10auth
+      - image: circleci/node:7.10
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -31,7 +31,7 @@ jobs:
       - image: account-id.dkr.ecr.us-east-1.amazonaws.com/org/repo:0.1
         aws_auth:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_STAGING
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_STAGING
+          aws_secret_access_key: $  
     steps:
       - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
       # deploy the image
