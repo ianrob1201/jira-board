@@ -21,7 +21,7 @@ jobs:
      - setup_remote_docker
 
      # build the application image
-     - run: docker build -t company/app:$CIRCLE_BRANCH .
-
+     - run: docker build -t jira-board .
+     - run: docker tag jira-board:latest 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
      # deploy the image
-     - run: docker push company/app:$CIRCLE_BRANCH
+     - run: docker push 192167080104.dkr.ecr.eu-west-1.amazonaws.com/jira-board:latest
