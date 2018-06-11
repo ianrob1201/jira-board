@@ -25,6 +25,7 @@ deploy_cluster() {
         return 1
     fi
 
+    return 0
     # wait for older revisions to disappear
     # not really necessary, but nice for demos
     for attempt in {1..30}; do
